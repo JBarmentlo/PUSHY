@@ -8,16 +8,16 @@ OBJ_FOLDER=out
 LIBFT_DIR=../libft
 OUT=$(addprefix $(OBJ_FOLDER)/,$(SOURCES:.c=.o))
 
-all: $(LIBFT_DIR)/libft.a out/push_swap.o out/checker.o checker $(NAME) 
+all: $(LIBFT_DIR)/libft.a out/push_swap.o out/checker.o checker $(NAME)
 
-$(NAME): $(OUT) Sources/push_swap.c
+$(NAME): $(OUT) Sources/push_swap.c Makefile Includes/ps.h
 	gcc $(CFLAGS) -o $(NAME) $(LIBFT_DIR)/libft.a out/push_swap.o $(OUT)
 
-checker: $(OUT) Sources/checker.c
+checker: $(OUT) Sources/checker.c Makefile Includes/ps.h
 	gcc $(CFLAGS) -o checker $(LIBFT_DIR)/libft.a out/checker.o $(OUT)
 
 
-$(LIBFT_DIR)/libft.a:
+$(LIBFT_DIR)/libft.a: FORCE
 	make -C $(LIBFT_DIR)
 
 $(OBJ_FOLDER)/%.o: Sources/%.c Makefile ./Includes/ps.h
@@ -34,3 +34,5 @@ fclean: clean
 	rm -rf checker
 
 re: fclean all
+
+FORCE:

@@ -6,7 +6,7 @@
 /*   By: jbarment <jbarment@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 16:58:07 by jbarment          #+#    #+#             */
-/*   Updated: 2019/06/08 18:32:48 by jbarment         ###   ########.fr       */
+/*   Updated: 2019/06/08 19:46:02 by ldevelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@ char	*initio_el_checko(void)
 		str_tmp = str;
 		str = ft_strjoin(str, buff);
 		free(str_tmp);
+	}
+	red = 0;
+	while (str[red])
+		red++;
+	if (red != 0 && str[red - (red != 0)] != '\n')
+	{
+		free(str);
+		error();
 	}
 	return (str);
 }
